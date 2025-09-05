@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id": "7c4798af-39c7-46a6-a9b4-53930dddb647",
+      "name": "asdasd",
+      "price": "12312",
+      "category": "asda",
+      "discountPrice": "1231",
+      "image": "https://images.unsplash.com/photo-1755018237411-2c3994eb9a0b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8"
+    },
+    {
+      "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
+      "name": "Smartfon Samsung Galaxy A55 8GB/256GB DARK BLUE (A556)",
+      "price": "949.00",
+      "category": "phone",
+      "discountPrice": "879.00",
+      "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Fsmartfon-samsung-galaxy-a55-8gb256gb-dark-blue-a556_1.webp&w=1080&q=75"
+    },
+   
+  
+    {
+      "id": "574565c7-7591-4fd0-88f5-dcf27d3fb9b8",
+      "name": "Televizor Samsung UE43DU7100UXRU",
+      "price": "1234.00",
+      "category": "",
+      "discountPrice": "1233.00",
+      "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Ftelevizor-samsung-ue43du7100uxru_1.webp&w=1080&q=75"
+    }
+
+  ]
+}
