@@ -157,7 +157,71 @@ function productRender() {
             <img class="w-full h-[210px] object-contain" src="${item.image}" alt="${item.name}" />
           </div>
         </div>
-
+  <div class="flex items-center gap-2 text-[13px] text-[#6B7280] ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M7.09067 1.57886L8.21887 3.83274C8.32944 4.05401 8.54286 4.20744 8.79036 4.24294L11.3142 4.60623C11.9377 4.69626 12.1859 5.45199 11.7346 5.88502L9.90956 7.63867C9.7302 7.81112 9.64856 8.05902 9.69099 8.30247L10.1217 10.7783C10.2278 11.3907 9.57592 11.858 9.01857 11.5682L6.76281 10.3985C6.54167 10.2837 6.27682 10.2837 6.05504 10.3985L3.79928 11.5682C3.24193 11.858 2.59008 11.3907 2.69679 10.7783L3.12686 8.30247C3.16929 8.05902 3.08764 7.81112 2.90829 7.63867L1.08324 5.88502C0.63196 5.45199 0.8801 4.69626 1.50366 4.60623L4.02749 4.24294C4.27499 4.20744 4.48906 4.05401 4.59963 3.83274L5.72718 1.57886C6.00618 1.02157 6.81167 1.02157 7.09067 1.57886Z"
+                  fill="red"
+                  stroke="red"
+                  stroke-width="1.3891"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <span class="">0</span>
+              <span
+                class="w-1 h-1 rounded-full bg-[#E5E7EB] inline-block"
+              ></span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="15"
+                viewBox="0 0 14 15"
+                fill="none"
+              >
+                <path
+                  opacity="0.3"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.3119 11.7734C9.42512 13.6604 6.63122 14.0681 4.34486 13.0107C4.00733 12.8748 3.73061 12.765 3.46754 12.765C2.73478 12.7693 1.82272 13.4798 1.34869 13.0064C0.87467 12.5323 1.58571 11.6195 1.58571 10.8823C1.58571 10.6192 1.48023 10.3474 1.34435 10.0093C0.286481 7.72326 0.694739 4.92843 2.58153 3.04205C4.99013 0.632571 8.90332 0.632571 11.3119 3.04143C13.7248 5.45463 13.7205 9.36453 11.3119 11.7734Z"
+                  fill="#ea2427"
+                  stroke="#ea2427"
+                  stroke-width="1.3891"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M9.37818 7.66367H9.38373"
+                  stroke="white"
+                  stroke-width="1.85213"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M6.90357 7.66367H6.90912"
+                  stroke="white"
+                  stroke-width="1.85213"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M4.42798 7.66367H4.43354"
+                  stroke="white"
+                  stroke-width="1.85213"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <span class="">0 rəy</span>
+            </div>
         <div class="text-[14px] leading-5 font-normal text-[#333333]">${item.name}</div>
 
         <div class="grid grid-cols-12 gap-2.5">
@@ -286,7 +350,7 @@ function renderCartList() {
       <div class="flex items-center gap-3">
         <button class="w-10 h-10 rounded-lg bg-gray-200 flex items-center justify-center"
                 data-cart-dec="${i.id}">-</button>
-        <input type="number" min="0" step="1" value="${i.quantity}"
+        <input type="text" min="0" step="1" value="${i.quantity}"
                class="w-14 h-10 rounded-lg border text-center"
                data-cart-qty="${i.id}">
         <button class="w-10 h-10 rounded-lg bg-gray-200 flex items-center justify-center"
