@@ -483,7 +483,7 @@ CHECKOUT_FORM && CHECKOUT_FORM.addEventListener("submit", (e) => {
     if (data) {
       localStorage.removeItem(CART_KEY);
       window.dispatchEvent(new CustomEvent("cart:change", { detail: cartSnapshot() }));
-      setTimeout(() => { window.location.href = "/"; }, 2000);
+     window.location.href = "/order.html"
     } else {
       console.log("Error occurred during order placement.");
     }
@@ -491,20 +491,89 @@ CHECKOUT_FORM && CHECKOUT_FORM.addEventListener("submit", (e) => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const SCROLL_TO_TOP = document.querySelector("#Topbutton");
+  const ICON = SCROLL_TO_TOP?.querySelector("i");
 
-const SCROLL_TO_TOP = document.querySelector("#Topbutton");
-SCROLL_TO_TOP?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  function setProgress() {
+    if (!SCROLL_TO_TOP || !ICON) return;
+
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    const deg = pct * 3.6;
+
+    SCROLL_TO_TOP.style.setProperty("--p", `${deg}deg`);
+
+    if (scrollTop > 20) {
+      SCROLL_TO_TOP.style.background = `conic-gradient(#EC222B ${deg}deg, #ffffff 0)`;
+      ICON.classList.remove("ri-arrow-down-s-line", "text-[#EC222B]");
+      ICON.classList.add("ri-arrow-up-s-line", "text-white");
+    } else {
+      SCROLL_TO_TOP.style.background = "white";
+      ICON.classList.remove("ri-arrow-up-s-line", "text-white");
+      ICON.classList.add("ri-arrow-down-s-line", "text-[#EC222B]");
+    }
+  }
+
+  SCROLL_TO_TOP?.addEventListener("click", () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    if (scrollTop < 100) {
+      window.scrollTo({ top: docHeight, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+
+  setProgress();
+  window.addEventListener("scroll", setProgress, { passive: true });
+  window.addEventListener("resize", setProgress);
 });
 
-function setProgress() {
-  if (!SCROLL_TO_TOP) return;
-  const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  const deg = pct * 3.6;
-  SCROLL_TO_TOP.style.setProperty("--p", deg + "deg");
+
+
+const ordersTablebody = document.querySelector("#orders-table-body");
+
+async function fetchOrders() {
+  try {
+    const response = await fetch("http://localhost:3000/orders");
+    const orders = await response.json();
+    ordersTablebody.innerHTML = "";
+
+    orders.forEach((order) => {
+      const row = document.createElement("tr");
+      const productNames = order.orderItem.map((item) => item.name).join(", ");
+
+      row.innerHTML = `
+        <td class="px-4 py-3 text-sm text-gray-700">${order.id}</td>
+        <td class="px-4 py-3 text-sm text-gray-700">${order.image}</td>
+
+        <td class="px-4 py-3 text-sm text-gray-700">${order.name} ${
+        order.surname
+      }</td>
+      
+        <td class="px-4 py-3 text-sm text-gray-700">${productNames || "-"}</td>
+        <td class="px-4 py-3 text-sm text-gray-700">${order.totalAmount} ₼</td>
+        <td class="px-4 py-3 text-sm text-gray-700">${order.orderStatus}</td>
+        <td class="px-4 py-3 text-sm text-gray-700">${new Date().toLocaleDateString(
+          "az"
+        )}</td>
+      `;
+
+      ordersTablebody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Sifarişləri yükləmək mümkün olmadı:", error);
+  }
 }
-setProgress();
-window.addEventListener("scroll", setProgress, { passive: true });
-window.addEventListener("resize", setProgress);
+
+fetchOrders();
+
+
+

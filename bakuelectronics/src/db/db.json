@@ -19,14 +19,64 @@
   ],
   "orders": [
     {
-      "id": "19d6",
-      "name": "Lamiye",
-      "surname": "Alizade",
-      "phone": "1231231",
-      "email": "lamiyaea@code.edu.az",
+      "id": "800d",
+      "name": "slama",
+      "surname": "malam",
+      "phone": "6666666",
+      "email": "salam@gmail.com",
       "orderStatus": "Gözləmədə",
       "orderItem": [],
       "totalAmount": 0
+    },
+    {
+      "id": "35e4",
+      "name": "salam",
+      "surname": "malam",
+      "phone": "055521--00",
+      "email": "lamiyaea@code.edu.az",
+      "orderStatus": "Gözləmədə",
+      "orderItem": [
+        {
+          "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
+          "name": "Smartfon Samsung Galaxy A55 8GB/256GB DARK BLUE (A556)",
+          "price": 879,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Fsmartfon-samsung-galaxy-a55-8gb256gb-dark-blue-a556_1.webp&w=1080&q=75",
+          "quantity": 1
+        },
+        {
+          "id": "574565c7-7591-4fd0-88f5-dcf27d3fb9b8",
+          "name": "Smartfon Xiaomi Redmi Note 14 8GB/256GB OCEAN BLUE NFC",
+          "price": 1233,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Ftelevizor-samsung-ue43du7100uxru_1.webp&w=1080&q=75",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2112
+    },
+    {
+      "id": "0022",
+      "name": "salama",
+      "surname": "malama",
+      "phone": "055521--00",
+      "email": "lamiyaea@code.edu.az",
+      "orderStatus": "Gözləmədə",
+      "orderItem": [
+        {
+          "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
+          "name": "Smartfon Samsung Galaxy A55 8GB/256GB DARK BLUE (A556)",
+          "price": 879,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Fsmartfon-samsung-galaxy-a55-8gb256gb-dark-blue-a556_1.webp&w=1080&q=75",
+          "quantity": 2
+        },
+        {
+          "id": "574565c7-7591-4fd0-88f5-dcf27d3fb9b8",
+          "name": "Smartfon Xiaomi Redmi Note 14 8GB/256GB OCEAN BLUE NFC",
+          "price": 1233,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Ftelevizor-samsung-ue43du7100uxru_1.webp&w=1080&q=75",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 4224
     }
   ]
 }
