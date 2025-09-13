@@ -14,13 +14,67 @@
 <body>
   <div id="Loading" class="fixed w-full h-full inset-0 bg-white flex items-center justify-center z-[9999]">
     <div class="absolute">
-
       <div class="loader"></div>
     </div>
   </div>
-
-
-
+  <div id="signoutBtn" class="fixed h-full  z-50 right-0 justify-end bg-black/50 hidden">
+    <div class="w-[300px] bg-white h-full shadow-xl p-6 flex flex-col">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gray-200 grid place-items-center">
+            <ul>
+              <li id="userBtn"
+                class="w-[50px] h-[50px] bg-[#f5f5f5]  text-red-600 font-bold text-[24px] leading-[50px] rounded-[12px] duration-200 cursor-pointer hover:bg-[#dadada] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 15 20" fill="none"
+                  class="text-black">
+                  <path
+                    d="M1 16.9231C1 13.6519 3.65185 11 6.92308 11H8.07692C11.3481 11 14 13.6519 14 16.9231C14 18.0701 13.0701 19 11.9231 19H3.07692C1.92987 19 1 18.0701 1 16.9231Z"
+                    stroke="currentColor" stroke-width="2"></path>
+                  <rect x="4" y="1" width="7" height="7" rx="3.5" stroke="currentColor" stroke-width="2"></rect>
+                </svg>
+              </li>
+            </ul>
+          </div>
+ 
+        </div>
+        <button id="closeModal" class="text-gray-500 hover:text-black text-xl">
+          ✕
+        </button>
+      </div>
+      <ul class="flex-1 flex flex-col gap-6 text-gray-700">
+        <li class="flex items-center gap-3 hover:text-black cursor-pointer">
+          <i class="ri-shopping-bag-line text-lg"></i>
+          <span>Sifarişlərim</span>
+        </li>
+        <li class="flex items-center gap-3 hover:text-black cursor-pointer">
+          <i class="ri-eye-line text-lg"></i>
+          <span>Ən son baxdıqlarım</span>
+        </li>
+        <li class="flex items-center gap-3 hover:text-black cursor-pointer">
+          <i class="ri-map-pin-line text-lg"></i>
+          <span>Ünvanlarım</span>
+        </li>
+        <li class="flex items-center gap-3 text-red-500 cursor-pointer">
+          <i class="ri-user-settings-line text-lg"></i>
+          <span>Şəxsi məlumatlarım</span>
+        </li>
+        <li class="flex items-center gap-3 hover:text-black cursor-pointer">
+          <i class="ri-mail-line text-lg"></i>
+          <span>Müraciət et</span>
+        </li>
+        <li id="signOut" class="flex items-center gap-3 text-red-500 cursor-pointer">
+          <i class="ri-logout-box-r-line text-lg"></i>
+          <span>Çıxış</span>
+        </li>
+      </ul>
+      <div class="mt-auto">
+        <button
+          class="fixed bottom-6 right-6 bg-red-500 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
+          <i class="ri-chat-3-line"></i>
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="toTop fixed bottom-20 right-20 z-[999]">
     <div id="Topbutton"
       class="group relative grid place-items-center w-[50px] h-[50px] rounded-full border border-[#EC222B] shadow-lg cursor-pointer select-none transition duration-300 [background:conic-gradient(#EC222B_var(--p,0deg),_#ffffff_0)]"
@@ -128,27 +182,30 @@
                   </svg>
                 </li>
               </a>
-       <a href="./wishlist.html">       <li
-        class="w-[50px] h-[50px] bg-[#f5f5f5] text-[#333] leading-[50px] rounded-[12px] duration-200 cursor-pointer hover:bg-[#dadada] flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M3.8942 12.0816C2.77649 8.59201 4.08274 4.60347 7.74628 3.42326C9.67336 2.80138 11.8004 3.16805 13.4025 4.37326C14.9182 3.20138 17.1234 2.80555 19.0484 3.42326C22.7119 4.60347 24.0265 8.59201 22.9098 12.0816C21.1702 17.6128 13.4025 21.8733 13.4025 21.8733C13.4025 21.8733 5.69211 17.6774 3.8942 12.0816Z"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M17.5688 6.97917C18.6834 7.33959 19.4709 8.33438 19.5657 9.50209" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-      </li></a>
-              <a href="./login.html">
+              <a href="./wishlist.html">
                 <li
                   class="w-[50px] h-[50px] bg-[#f5f5f5] text-[#333] leading-[50px] rounded-[12px] duration-200 cursor-pointer hover:bg-[#dadada] flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 15 20" fill="none">
-                    <path
-                      d="M1 16.9231C1 13.6519 3.65185 11 6.92308 11H8.07692C11.3481 11 14 13.6519 14 16.9231C14 18.0701 13.0701 19 11.9231 19H3.07692C1.92987 19 1 18.0701 1 16.9231Z"
-                      stroke="currentColor" stroke-width="2"></path>
-                    <rect x="4" y="1" width="7" height="7" rx="3.5" stroke="currentColor" stroke-width="2"></rect>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M3.8942 12.0816C2.77649 8.59201 4.08274 4.60347 7.74628 3.42326C9.67336 2.80138 11.8004 3.16805 13.4025 4.37326C14.9182 3.20138 17.1234 2.80555 19.0484 3.42326C22.7119 4.60347 24.0265 8.59201 22.9098 12.0816C21.1702 17.6128 13.4025 21.8733 13.4025 21.8733C13.4025 21.8733 5.69211 17.6774 3.8942 12.0816Z"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M17.5688 6.97917C18.6834 7.33959 19.4709 8.33438 19.5657 9.50209" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
                 </li>
               </a>
+
+              <li id="userBtn"
+                class="w-[50px] h-[50px] bg-[#f5f5f5]  text-red-600 font-bold text-[24px] leading-[50px] rounded-[12px] duration-200 cursor-pointer hover:bg-[#dadada] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 15 20" fill="none"
+                  class="text-black">
+                  <path
+                    d="M1 16.9231C1 13.6519 3.65185 11 6.92308 11H8.07692C11.3481 11 14 13.6519 14 16.9231C14 18.0701 13.0701 19 11.9231 19H3.07692C1.92987 19 1 18.0701 1 16.9231Z"
+                    stroke="currentColor" stroke-width="2"></path>
+                  <rect x="4" y="1" width="7" height="7" rx="3.5" stroke="currentColor" stroke-width="2"></rect>
+                </svg>
+              </li>
+
             </ul>
           </div>
         </div>

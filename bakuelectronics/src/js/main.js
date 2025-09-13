@@ -1,14 +1,56 @@
 import axiosService from "../Api/api";
 import postUserData from "../Auth/login";
+import register from "../Auth/register";
 import loading from "../loading/loading";
 
-const api = new axiosService("http://localhost:3000/");
+const SIGN_OUT_BTN = document.querySelector("#signoutBtn");
+const USER_BTN = document.querySelectorAll("#userBtn");
+const USER_EMAIL = localStorage.getItem("email");
+const CLOSE_BTN = document.querySelector("#closeModal");
+const SIGN_OUT = document.querySelector("#signOut");
 
+const api = new axiosService("http://localhost:3000/");
 
 postUserData();
 document.addEventListener("DOMContentLoaded", () => {
   loading();
+  register();
+
+
+  if (USER_EMAIL && USER_BTN) {
+    USER_BTN && USER_BTN.forEach((btn) => {
+      btn.textContent = USER_EMAIL.charAt(0).toUpperCase();;
+    }
+    );
+  }
+
+  if (USER_EMAIL) {
+    USER_BTN && USER_BTN.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        SIGN_OUT_BTN?.classList.remove("hidden");
+      });
+    })
+
+    CLOSE_BTN && CLOSE_BTN.addEventListener("click", () => {
+      SIGN_OUT_BTN?.classList.add("hidden");
+    });
+  } else {
+    USER_BTN && USER_BTN.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        window.location.href = "/login";
+      });
+    }
+    );
+  }
+
+  SIGN_OUT &&
+    SIGN_OUT.addEventListener("click", () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
+      window.location.href = "/";
+    });
 });
+
 
 
 export default function swiperVariants(name, perView, spaceBetween, autoplayDelay) {
@@ -87,12 +129,46 @@ ADMIN_FORM?.addEventListener("submit", (e) => {
 });
 
 
+
+
+let currentEditId = null;
+let currentDeleteId = null;
+
+const EDIT_MODAL = document.getElementById("editModal");
+const DELETE_MODAL = document.getElementById("deleteModal");
+
+const openModal = (el) => el?.classList.remove("hidden");
+const closeModal = (el) => el?.classList.add("hidden");
+
+const EDIT_FORM = document.getElementById("editForm");
+const EDIT_NAME = document.getElementById("editName");
+const EDIT_PRICE = document.getElementById("editPrice");
+const EDIT_CATEGORY = document.getElementById("editCategory");
+const EDIT_IMAGE = document.getElementById("editImage");
+
+const DEL_NAME = document.getElementById("delName");
+const CONFIRM_DELETE_BTN = document.getElementById("confirmDeleteBtn");
+
+[EDIT_MODAL, DELETE_MODAL].forEach((modal) => {
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal(modal);
+  });
+});
+
+document.querySelectorAll("[data-close-edit]").forEach((btn) =>
+  btn.addEventListener("click", () => closeModal(EDIT_MODAL))
+);
+document.querySelectorAll("[data-close-del]").forEach((btn) =>
+  btn.addEventListener("click", () => closeModal(DELETE_MODAL))
+);
+
 const ADMIN_PRODUCT_WRAPPER = document.querySelector("#productTableBody");
 
-function adminProducts() {
+async function adminProducts() {
   if (!ADMIN_PRODUCT_WRAPPER) return;
-  api.getApiData("products").then((data) => {
-    const rows = data.map((item) => `
+  try {
+    const data = await api.getApiData("products");
+    const rows = (data || []).map((item) => `
       <tr class="hover:bg-gray-50 transition-colors">
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#${item.id}</td>
         <td class="px-6 py-4 whitespace-nowrap">
@@ -111,33 +187,94 @@ function adminProducts() {
         </td>
       </tr>
     `).join("");
-
     ADMIN_PRODUCT_WRAPPER.innerHTML = rows;
-  });
+  } catch (err) {
+    console.error("Məhsullar gətirilərkən xəta:", err);
+  }
 }
 adminProducts();
 
-ADMIN_PRODUCT_WRAPPER?.addEventListener("click", (e) => {
+ADMIN_PRODUCT_WRAPPER?.addEventListener("click", async (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
+
   const id = btn.dataset.id;
+  if (!id) return;
 
   if (btn.hasAttribute("data-del")) {
-    api.DeleteData(`products/${id}`).then(() => {
-      adminProducts();
-      productRender();
-    });
+    try {
+      const product = await api.getApiData(`products/${id}`);
+      currentDeleteId = id;
+      DEL_NAME.textContent = product?.name ?? `#${id}`;
+      openModal(DELETE_MODAL);
+    } catch (err) {
+      console.error("Silinmə üçün məlumat xətası:", err);
+      alert("Məhsul məlumatı alınmadı.");
+    }
+    return;
   }
 
   if (btn.hasAttribute("data-edit")) {
-    const newName = prompt("Yeni ad:");
-    if (!newName) return;
-    api.UpdateData(`products/${id}`, { name: newName }).then(() => {
-      adminProducts();
-      productRender();
-    });
+    try {
+      const product = await api.getApiData(`products/${id}`);
+      currentEditId = id;
+
+      EDIT_NAME.value = product?.name ?? "";
+      EDIT_PRICE.value = product?.price ?? "";
+      EDIT_CATEGORY.value = product?.category ?? "";
+      EDIT_IMAGE.value = product?.image ?? "";
+
+      openModal(EDIT_MODAL);
+    } catch (err) {
+      console.error("Redaktə üçün məlumat xətası:", err);
+      alert("Məhsul məlumatı alınmadı.");
+    }
   }
 });
+
+EDIT_FORM?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!currentEditId) return;
+
+  const payload = {
+    name: EDIT_NAME.value.trim(),
+    price: Number(EDIT_PRICE.value),
+    category: EDIT_CATEGORY.value.trim(),
+    image: EDIT_IMAGE.value.trim(),
+  };
+
+  if (!payload.name || !payload.category || !payload.image || isNaN(payload.price)) {
+    alert("Zəhmət olmasa bütün sahələri düzgün doldurun.");
+    return;
+  }
+
+  try {
+    await api.UpdateData(`products/${currentEditId}`, payload); // PATCH
+    closeModal(EDIT_MODAL);
+    await adminProducts();
+    if (typeof productRender === "function") productRender(); // vitrin varsa yenilə
+  } catch (err) {
+    console.error("Yenilənərkən xəta:", err);
+    alert("Yenilənmə zamanı xəta oldu.");
+  }
+});
+
+CONFIRM_DELETE_BTN?.addEventListener("click", async () => {
+  if (!currentDeleteId) return;
+  try {
+    await api.DeleteData(`products/${currentDeleteId}`);
+    closeModal(DELETE_MODAL);
+    await adminProducts();
+    if (typeof productRender === "function") productRender();
+  } catch (err) {
+    console.error("Silinərkən xəta:", err);
+    alert("Silinmə zamanı xəta oldu.");
+  } finally {
+    currentDeleteId = null;
+  }
+});
+
+
 
 
 const PRODUCT_WRAPPER_CLIENT = document.querySelector("#productWrapper");
@@ -366,10 +503,10 @@ function renderCartList() {
 
 
 function renderSummary() {
-  const linesEl   = document.querySelector("[data-summary-lines]");
-  const countEl   = document.querySelector("[data-summary-count]");
-  const discountEl= document.querySelector("[data-summary-discount]");
-  const totalEl   = document.querySelector("[data-cart-total]");
+  const linesEl = document.querySelector("[data-summary-lines]");
+  const countEl = document.querySelector("[data-summary-count]");
+  const discountEl = document.querySelector("[data-summary-discount]");
+  const totalEl = document.querySelector("[data-cart-total]");
 
   const { items, count, total } = cartSnapshot();
   if (linesEl) {
@@ -387,9 +524,9 @@ function renderSummary() {
       `).join("");
     }
   }
-  if (countEl)   countEl.textContent = `${count} ədəd`;
+  if (countEl) countEl.textContent = `${count} ədəd`;
   if (discountEl) discountEl.textContent = `0 ₼`;
-  if (totalEl)   totalEl.textContent = fmtAZN(total);
+  if (totalEl) totalEl.textContent = fmtAZN(total);
 }
 
 
@@ -427,7 +564,7 @@ document.addEventListener("click", (e) => {
     return;
   }
 
- 
+
   const dec = e.target.closest("[data-cart-dec]");
   if (dec) {
     updateQty(dec.getAttribute("data-cart-dec"), -1);
@@ -483,7 +620,7 @@ CHECKOUT_FORM && CHECKOUT_FORM.addEventListener("submit", (e) => {
     if (data) {
       localStorage.removeItem(CART_KEY);
       window.dispatchEvent(new CustomEvent("cart:change", { detail: cartSnapshot() }));
-     window.location.href = "/order.html"
+      window.location.href = "/order.html"
     } else {
       console.log("Error occurred during order placement.");
     }
@@ -544,7 +681,7 @@ async function fetchOrders() {
   try {
     const response = await fetch("http://localhost:3000/orders");
     const orders = await response.json();
-    ordersTablebody.innerHTML = "";
+    ordersTablebody && (ordersTablebody.innerHTML = "");
 
     orders.forEach((order) => {
       const row = document.createElement("tr");
@@ -554,9 +691,8 @@ async function fetchOrders() {
         <td class="px-4 py-3 text-sm text-gray-700">${order.id}</td>
         <td class="px-4 py-3 text-sm text-gray-700">${order.image}</td>
 
-        <td class="px-4 py-3 text-sm text-gray-700">${order.name} ${
-        order.surname
-      }</td>
+        <td class="px-4 py-3 text-sm text-gray-700">${order.name} ${order.surname
+        }</td>
       
         <td class="px-4 py-3 text-sm text-gray-700">${productNames || "-"}</td>
         <td class="px-4 py-3 text-sm text-gray-700">${order.totalAmount} ₼</td>
@@ -566,7 +702,7 @@ async function fetchOrders() {
         )}</td>
       `;
 
-      ordersTablebody.appendChild(row);
+      ordersTablebody && ordersTablebody.appendChild(row);
     });
   } catch (error) {
     console.error("Sifarişləri yükləmək mümkün olmadı:", error);
@@ -574,6 +710,5 @@ async function fetchOrders() {
 }
 
 fetchOrders();
-
 
 

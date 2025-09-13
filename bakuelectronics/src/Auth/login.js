@@ -1,19 +1,20 @@
-import axiosService from "../Api/api";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../lib/firebase";
+
 const postUserData = () => {
-  const api = new axiosService("https://dummyjson.com/auth");
   const LoginForm = document.querySelector("#loginForm");
-  const UsernameInput = document.querySelector("#username");
+  const LOGIN_EMAIL = document.querySelector("#login_email");
   const PaSSwordInput = document.querySelector("#password");
 
-  LoginForm   &&
-  LoginForm.addEventListener("submit", (e) => {
+  LoginForm &&
+    LoginForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const loginPayload = {
-        username: UsernameInput.value,
+        email: LOGIN_EMAIL.value,
         password: PaSSwordInput.value,
       };
-      api.PostNewData("/login", loginPayload).then((data) => {
+      signInWithEmailAndPassword(auth, loginPayload.email, loginPayload.password).then((data) => {
         console.log(data);
         if (data) {
           Swal.fire({
@@ -21,7 +22,7 @@ const postUserData = () => {
             icon: "success",
             draggable: true,
           });
-        } else { 
+        } else {
           Swal.fire({
             title: "Oops!",
             icon: "error",
@@ -29,7 +30,8 @@ const postUserData = () => {
           });
         }
 
-        localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("token", data?.user?.accessToken);
+        localStorage.setItem("email", data?.user?.email);
         setTimeout(() => {
           window.location.href = "/";
         }, 1000);

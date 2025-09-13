@@ -1,20 +1,20 @@
 {
   "products": [
     {
-      "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
-      "name": "Smartfon Samsung Galaxy A55 8GB/256GB DARK BLUE (A556)",
-      "price": "949.00",
-      "category": "phone",
-      "discountPrice": "879.00",
-      "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Fsmartfon-samsung-galaxy-a55-8gb256gb-dark-blue-a556_1.webp&w=1080&q=75"
-    },
-    {
       "id": "574565c7-7591-4fd0-88f5-dcf27d3fb9b8",
       "name": "Smartfon Xiaomi Redmi Note 14 8GB/256GB OCEAN BLUE NFC",
       "price": "1234.00",
       "category": "",
       "discountPrice": "1233.00",
       "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Ftelevizor-samsung-ue43du7100uxru_1.webp&w=1080&q=75"
+    },
+    {
+      "id": "e2198eb6-59e3-4411-9051-96077fa29ede",
+      "name": "asdasd",
+      "price": 11,
+      "category": "asdsad",
+      "discountPrice": -4,
+      "image": "data:image/jpeg;base64,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"
     }
   ],
   "orders": [
@@ -24,7 +24,7 @@
       "surname": "malam",
       "phone": "6666666",
       "email": "salam@gmail.com",
-      "orderStatus": "Gözləmədə",
+      "orderStatus": "Çatdırıldı",
       "orderItem": [],
       "totalAmount": 0
     },
@@ -34,7 +34,7 @@
       "surname": "malam",
       "phone": "055521--00",
       "email": "lamiyaea@code.edu.az",
-      "orderStatus": "Gözləmədə",
+      "orderStatus": "Çatdırıldı",
       "orderItem": [
         {
           "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
@@ -59,6 +59,31 @@
       "surname": "malama",
       "phone": "055521--00",
       "email": "lamiyaea@code.edu.az",
+      "orderStatus": "Göndərildi",
+      "orderItem": [
+        {
+          "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
+          "name": "Smartfon Samsung Galaxy A55 8GB/256GB DARK BLUE (A556)",
+          "price": 879,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Fsmartfon-samsung-galaxy-a55-8gb256gb-dark-blue-a556_1.webp&w=1080&q=75",
+          "quantity": 2
+        },
+        {
+          "id": "574565c7-7591-4fd0-88f5-dcf27d3fb9b8",
+          "name": "Smartfon Xiaomi Redmi Note 14 8GB/256GB OCEAN BLUE NFC",
+          "price": 1233,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Ftelevizor-samsung-ue43du7100uxru_1.webp&w=1080&q=75",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 4224
+    },
+    {
+      "id": "4aee",
+      "name": "salam",
+      "surname": "malam",
+      "phone": "6666666",
+      "email": "salam@gmail.com",
       "orderStatus": "Gözləmədə",
       "orderItem": [
         {
@@ -77,6 +102,49 @@
         }
       ],
       "totalAmount": 4224
+    },
+    {
+      "id": "6a58",
+      "name": "slaam",
+      "surname": "mlaam",
+      "phone": "055521--00",
+      "email": "lamiyaea@code.edu.az",
+      "orderStatus": "Gözləmədə",
+      "orderItem": [
+        {
+          "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
+          "name": "Smartfon Samsung Galaxy A55 8GB/256GB DARK BLUE (A556)",
+          "price": 879,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Fsmartfon-samsung-galaxy-a55-8gb256gb-dark-blue-a556_1.webp&w=1080&q=75",
+          "quantity": 1
+        },
+        {
+          "id": "574565c7-7591-4fd0-88f5-dcf27d3fb9b8",
+          "name": "Smartfon Xiaomi Redmi Note 14 8GB/256GB OCEAN BLUE NFC",
+          "price": 1233,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Ftelevizor-samsung-ue43du7100uxru_1.webp&w=1080&q=75",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 2112
+    },
+    {
+      "id": "2d47",
+      "name": "Test",
+      "surname": "Tester",
+      "phone": "123231",
+      "email": "salam2@gmail.com",
+      "orderStatus": "Gözləmədə",
+      "orderItem": [
+        {
+          "id": "ef7d1160-7397-403b-9112-a19a6922fed4",
+          "name": "Smartfon Samsung Galaxy A55 8GB/256GB DARK BLUE (A556)",
+          "price": 879,
+          "image": "https://new.bakuelectronics.az/_next/image?url=https%3A%2F%2Fimg.b-e.az%2Fmedia%2FinventImages%2Fsmartfon-samsung-galaxy-a55-8gb256gb-dark-blue-a556_1.webp&w=1080&q=75",
+          "quantity": 3
+        }
+      ],
+      "totalAmount": 2637
     }
   ]
 }
